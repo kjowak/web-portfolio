@@ -2917,6 +2917,7 @@ input, select, textarea {
 			height: 1;
 			margin: 0 0 1rem 0;
 			position: relative;
+			font-style: italic;
 		}
 
 		header > p {
