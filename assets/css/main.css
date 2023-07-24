@@ -2671,6 +2671,7 @@ input, select, textarea {
 			-webkit-transition: -webkit-transform 0.2s ease-out;
 			-ms-transition: -ms-transform 0.2s ease-out;
 			transition: transform 0.2s ease-out;
+			
 		}
 
 		a.image:hover img {
@@ -2680,6 +2681,22 @@ input, select, textarea {
 			transform: scale(1.05);
 		}
 
+	/* Logos */
+	img.project-logo {
+		border-color: black;
+		border-width: 5px;
+		border-style: solid;
+	}
+
+	img.sneak-easy-logo {
+		background-color: maroon;
+	}
+	
+	img.tomb-for-two-logo {
+		background-color: darkcyan;
+	}
+
+	
 /* Actions */
 
 	ul.actions {
@@ -3885,6 +3902,15 @@ input, select, textarea {
 
 				#main > .posts > article:nth-child(-n + 2) {
 					border-top-width: 0;
+				}
+
+				p.project-role {
+					font-weight: bold;
+					font-size: larger;
+				}
+
+				p.project-role > span {
+					color: #0B9A6D;
 				}
 
 			@media screen and (max-width: 980px) {
