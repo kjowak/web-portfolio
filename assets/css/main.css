@@ -2682,7 +2682,7 @@ input, select, textarea {
 		}
 
 	/* Logos */
-	img.project-logo {
+	img {
 		border-color: black;
 		border-width: 5px;
 		border-style: solid;
@@ -2694,6 +2694,10 @@ input, select, textarea {
 	
 	img.tomb-for-two-logo {
 		background-color: darkcyan;
+	}
+
+	img.roblox-dev-logo {
+		background-color: gainsboro;
 	}
 
 	

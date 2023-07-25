@@ -52,15 +52,75 @@
 									<span class="date">Fall 2022</span>
 									<h1>Tomb For<br />
 									Two</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
+									<p>
+										Tomb for Two is a local 2-player dungeon crawler where Anubis and Bastet have been trapped in a pyramid. 
+										Set in a far-off futuristic world, the two players must escape the pyramid by defeating enemies 
+										and solving puzzles together. On this project, I worked on certain enemy aspects, including an entire enemy type, 
+										as well as all of player movement.
+									</p>
 								</header>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+								<div class="image main"><img src="images/original-portfolio-images/TFT_main.jpg" alt="" /></div>
 								<div class="box alt">
+									<!--Change this to a flexbox-->
 									<div class="row gtr-50">
-										<div class="col-6"><p>Test text here about a boy writing a portfolio so that he can get a good job in game design</p></div>
-										<div class="col-6"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+										<div class="off-1 col-9">
+											<!--Movement-->
+											<h2><b><u>Movement</u></b></h2>
+											<p>
+												Tomb for Two features pretty standard player movement. You can move around with the WASD keys
+												or the left joystick. You can also dash by pressing space on keyboard, or A on controller. In addition,
+												I coded the player turning for mouse/keyboard. 
+											</p>
+											<p>
+												The movement is a basic Transform update on the player's model, and was some of the first code I ever wrote
+												in Unity C#. It utilizes Unity's new Input System to detect player input, as does the dash mechanic. The dash mechanic
+												works by first stripping the player of regular movement controls. It then applies an impulse to the player model in the direction
+												that they were moving using Unity's Rigidbody.AddForce() function.
+											</p>
+											<a class="button">Watch Clip</a>
+											<!--<img src="images/original-portfolio-images/TFTDash.gif" alt="">-->
+											<p>
+												Both player movement and dashing get overriden when a player steps onto an ice puzzle, which I coded completely on my own.
+												It utilizes Unity's OnCollisionEnter events to detect when a player steps onto an ice puzzle, which sets the player into a
+												special state. In this state, the player is only allowed to move along the X and Z axes. When they move in a direction,
+												a velocity is placed onto the player model in that direction until they hit a wall. Hit detection is done through a Spherecast
+												just in front of the player along the axes on which they are moving. If the Spherecast detects a Collider with a specific Tag,
+												it lets the controller know that the player needs to be stopped, and can choose a new direction to move in.
+											</p>
+											<a class="button">Watch Clip</a>
+
+											<!--Enemies-->
+											<h2><b><u>Enemies</u></b></h2>
+											<p>
+												The enemies in Tomb For Two are credited largely to my teammate Nick Fraus, who did the majority of the work on them.
+												I did, however, have my contributions.
+											</p>
+											<p>
+												Certain subclasses of enemies have the ability to stun the player, leaving them unable to move or attack. They can, however,
+												free themselves by dashing. Based on this synergy, it made sense that I would work on creating the "stunned" player state, as well as coupling
+												it with the dash mechanic. Players are also granted invulnerability from any damage or stuns while dashing.
+											</p>
+											<p>
+												In addition to working with enemy stun, I also created a few enemy types of my own. One of these types is the Priest,
+												which is a passive and tanky enemy that wanders the pyramid, granting any fellow enemies in its radius invincibility.
+												To defeat enemies caught in the Priest's sandtrap, players must either lure enemies out of the priest's range, or defeat
+												the priest itself.
+											</p>
+											<a class="button">Watch Clip</a>
+											<p>
+												While most of the base Enemy code was already laid out, I took the opportunity to learn about how the enemies in our game
+												worked, which meant learning about Unity's NavMesh, NavMesh Agents, and various Physics functions.
+											</p>
+											<p>
+												Another aspect of Tomb for Two enemies I contributed to are the enemy shields. Any enemy can be shielded,
+												which means that they can only be damaged by melee attacks. To get this working meant diving into the player
+												projectile code and adding a check in the OnCollisionEnter function. It also meant creating a new enemy state.
+											</p>
+											<a class="button">Watch Clip</a>
+											<p>
+												Tomb for Two is available for download on the Spartasoft Studio <a href="https://spartasoftstudio.itch.io/tomb-for-two">itch.io page</a>.
+											</p>
+										</div>
 									</div>
 								</div>
 								
