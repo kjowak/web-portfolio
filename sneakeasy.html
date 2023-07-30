@@ -80,6 +80,47 @@
 											The player was then able to vault, roll, wall kick, and ledge grab their way through the environment 
 											in a fluid manner, keeping their momentum where they would have otherwise lost it.
 										</p>
+										<a class="button" href="images/SneakeasyQTE1.gif">Watch Clip</a>
+										<p>
+											As the player successfully performs consecutive QTEs, they build up a “momentum combo,” 
+											which stacks up to a max level of 3. The higher the momentum combo, the faster the player accelerates, 
+											and the faster the player will run at their top speed.
+										</p>
+										<p>
+											Since every QTE would increase this combo counter, each type of QTE inherits from a base QTE class, 
+											which implements the functionality that we wanted all QTEs to exhibit (i.e. increasing the momentum combo on success). 
+											This allowed my team to avoid repeating the same code redundantly in each derived QTE class, 
+											making our code easier to write and, more importantly, easier to debug.
+										</p>
+										<p>
+											When initially developing the QTE classes, my team and I had used Monobehaviours attached to 
+											the respective GameObject that we wanted to be vaultable/rollable/etc. (quicktime-able, if you will). 
+											However, as we began to add more and more of these QTE objects into our game, I realized that we’d be 
+											creating a lot of Monobehaviour instances that all serve the same purpose. 
+											This would leave us prone to errors and scaling issues - if a designer wanted to change the settings 
+											for a certain QTE, they’d have to change those values in the inspector for <b>all</b> GameObjects with that 
+											QTE’s MonoBehaviour as a component.
+										</p>
+										<p>
+											Understanding that using Monobehaviours in that situation would not be ideal, 
+											I suggested to my team that we switch QTEs over from inheriting from Monobehaviour 
+											to inheriting from ScriptableObject. In doing so, we only needed <b>one instance</b> of each 
+											QTE type to exist, which would contain the settings for how its respective QTE should behave <b>every time</b>. 
+											This made our project a lot cleaner and kept all of our code relating to QTEs in one place, 
+											making it much easier for the design team to work in our project and make changes as they saw fit.
+										</p>
+										<img src="images/SneakEasyProjectView.png"/>
+										<br>
+										<p>
+											In addition to making QTEs easy for designers to tweak, 
+											my team sought to make all of player movement designer-friendly as well. 
+											To accomplish this, we exposed as many core variables in the inspector as we could, 
+											such as the player’s max speed, the player’s acceleration, and the player’s jump power. 
+											This allowed designers to play around with values as much as they pleased, 
+											streamlining the path towards a well-balanced and polished game.
+										</p>
+										<img src="images/SneakEasyInspector.png"/>
+										<br>
 										<p>
 											Sneakeasy is available for download on the Spartasoft Studio <a href="https://spartasoftstudio.itch.io/sneakeasy">itch.io page</a>.
 										</p>
