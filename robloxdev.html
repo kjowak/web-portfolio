@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Roblox Development - Kyle Nowak</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				
+
+				<!-- Header -->
+					<header id="header">
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<!--<li><a href="generic.html">Generic Page</a></li>-->
+							<!--<li><a href="elements.html">Elements Reference</a></li>-->
+							<li><a href="tombfortwo.html">Tomb For Two</a></li>
+							<li class="active"><a href="robloxdev.html">Roblox Development</a></li>
+							<li><a href="sneakeasy.html">Sneakeasy</a></li>
+						</ul>
+						<!-- I should add a LinkedIn Icon up here
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						-->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">2015 - Present</span>
+									<h1>Roblox Development</h1>
+									<p>
+										 
+									</p>
+								</header>
+								<div class="image main"><img src="images/RBXDevMain0.png" alt="" /></div>
+								
+								<div class="row-content">
+									<div class="column-content">
+										<!--Star Wars Sim-->
+										<h2>Star Wars Simulator</h2>
+										<p>
+											Star Wars Simulator was a game my friends and I wanted to create over the Summer of 2022. 
+                                            The end goal was to have a game where players could immerse themselves in the world of Star Wars, 
+                                            playing as an anonymous citizen of the galaxy. 
+                                            The game never came to completion, but I do want to take a moment to highlight some of the gameplay 
+                                            abilities I developed for it. 
+										</p>
+										<p>
+											The force push and pull abilities both rely on spatial queries in front 
+                                            of the player to search for any parts within range of the ability. 
+                                            I then iterated over all of the parts found using that boxcast, 
+                                            determined their appropriate network owner, and then signaled that owner 
+                                            to apply an impulse to the appropriate part. 
+                                            To avoid repeatedly pushing/pulling an assembly composed of more than one part, 
+                                            I made sure to keep a temporary list of affected assemblies that I could then 
+                                            check before applying force to a part. 
+                                            This was particularly important when dealing with pushing and pulling other players, 
+                                            as player characters are commonly multi-part assemblies.
+										</p>
+										<a class="button" href="images/original-portfolio-images/SWS_Landing.gif">Watch Clip</a>
+										<br/>
+
+                                        <!--Kamil's Surfing-->
+                                        <h2>Kamil's Surfing</h2>
+                                        <p>
+                                            Kamil’s Surfing is a racing game in which players go head-to-head trying to outsurf each other. 
+                                            Players can earn coins by placing highly in races, 
+                                            which they can then spend on upgraded boards.
+                                        </p>
+                                        <p>
+                                            To accomplish this, I utilized Roblox’s DataStore service, 
+                                            which allows developers to maintain persistent data for players across servers and play sessions. 
+                                            I used this service to save the player’s cash amount every time they left the server, 
+                                            as well as what boards they have already unlocked. In addition to simple data persistence, 
+                                            I used the DataStore service to communicate between the main hub server and the servers 
+                                            where the races actually took place, allowing the player to select a board in the main hub 
+                                            and then see that selection reflected in the race itself.
+                                        </p>
+                                        <a class="button" href="images/original-portfolio-images/TFTDash.gif">Watch Clip</a>
+										<br/>
+
+                                        <!--Blackjack-->
+                                        <h2>Blackjack</h2>
+                                        <p>
+                                            A big fan of the card game, I’ve made two virtual renditions of the popular casino game Blackjack on Roblox. 
+                                            The more advanced rendition has support for multiple players at a table, 
+                                            and features a relatively well-polished UI display that provides intuitive and accurate player feedback. 
+                                            It also utilizes a proper deck with a limited amount of each card, 
+                                            providing players with an experience that is true to the real game.
+                                        </p>
+                                        <a class="button" href="images/original-portfolio-images/TFTDash.gif">Watch Clip</a>
+										<br/>
+
+                                        <!--Weapons-->
+                                        <h2>Weapons System</h2>
+                                        <p>
+                                            With shooters being one of the most popular game genres, 
+                                            I found it fitting that I should try my hand at creating some guns of my own.
+                                        </p>
+                                        <p>
+                                            The weapon system I created utilizes a raycast from the end of the gun’s barrel 
+                                            to the player’s mouse to determine where the bullet should travel, 
+                                            as well as detect any intersecting parts (these are “hitscan” weapons). 
+                                        </p>
+                                        <p>
+                                            To detect when a gun should fire, I utilized Roblox’s RemoteEvents, 
+                                            which allow for communication between the client and the server. 
+                                            When a player clicks their mouse with a gun equipped, the client activates a RemoteEvent, 
+                                            which then runs code on the server to handle the raycasting logic described above. 
+                                            This was done to prevent hackers from being able to change important data about each fire, 
+                                            such as the amount of damage to deal if an opposing player is hit.
+                                        </p>
+                                        <a class="button" href="images/original-portfolio-images/WeaponFactoryFiring.gif">Watch Clip</a>
+										<br/>
+                                        <p>
+                                            In addition to coding the guns, I also tried my hand at animating them. 
+                                            I utilized Roblox’s built in animation editor to create firing, reloading, 
+                                            and idle animations for each of the guns I scripted.
+                                        </p>
+                                        <a class="button" href="images/original-portfolio-images/WeaponFactoryAnimations.gif">Watch Clip</a>
+										<br/>
+                                        <p>
+                                            You can try the weapons out for yourself in <a>this</a> Roblox experience!
+                                        </p>
+
+									</div>
+								</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">nowakky1@msu.edu</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/kyle-nowak-922ba6222/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<!--
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								-->
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
