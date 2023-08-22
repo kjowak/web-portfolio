@@ -7,14 +7,27 @@
     align-items: center;
     /* flex-wrap: wrap; */
     flex-direction: column;
-    border: 0.25rem solid;
-    width: 85%;
+    border: 0.1rem solid;
+    width: 90%;
     padding: 5%;
 }
 
 .column-content > * {
     flex: 1;
 }
+
+#main .column-content p {
+    text-align: left;
+}
+
+
+.flex-column {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .column-content > h1, 
 .column-content > h2 {
