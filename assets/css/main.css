@@ -2682,25 +2682,7 @@ input, select, textarea {
 			transform: scale(1.05);
 		}
 
-	/* Logos */
-	img {
-		border-color: black;
-		border-width: 5px;
-		border-style: solid;
-	}
-
-	img.sneak-easy-logo {
-		background-color: maroon;
-	}
 	
-	img.tomb-for-two-logo {
-		background-color: darkcyan;
-	}
-
-	img.roblox-dev-logo {
-		background-color: gainsboro;
-	}
-
 	
 /* Actions */
 

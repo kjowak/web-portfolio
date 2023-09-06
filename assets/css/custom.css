@@ -42,3 +42,28 @@
     justify-content: center;
     flex-direction: row;
 }
+
+/* Logos */
+img {
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+}
+
+video {
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+}
+
+img.sneak-easy-logo {
+    background-color: maroon;
+}
+
+img.tomb-for-two-logo {
+    background-color: darkcyan;
+}
+
+img.roblox-dev-logo {
+    background-color: gainsboro;
+}
