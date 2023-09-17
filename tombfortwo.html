@@ -80,10 +80,12 @@
 											works by first stripping the player of regular movement controls. It then applies an impulse to the player model in the direction
 											that they were moving using Unity's Rigidbody.AddForce() function.
 										</p>
+										
 										<video controls loop>
 											<source src="images/MP4s/TFTDash.mp4" type="video/mp4">
 										</video>
 										<br/>
+
 										<p>
 											Both player movement and dashing get overriden when a player steps onto an ice puzzle, which I coded completely on my own.
 											It utilizes Unity's OnCollisionEnter events to detect when a player steps onto an ice puzzle, which sets the player into a
@@ -92,7 +94,11 @@
 											just in front of the player along the axes on which they are moving. If the Spherecast detects a Collider with a specific Tag,
 											it lets the controller know that the player needs to be stopped, and can choose a new direction to move in.
 										</p>
-										<a class="button" href="images/original-portfolio-images/TFTIcePuzzle.gif">Watch Clip</a>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTIcePuzzle.mp4" type="video/mp4">
+										</video>
+										<br/>
 										
 										<!--Enemies-->
 										<h2>Enemies</h2>
@@ -111,7 +117,12 @@
 											To defeat enemies caught in the Priest's sandtrap, players must either lure enemies out of the priest's range, or defeat
 											the priest itself.
 										</p>
-										<a class="button" href="images/original-portfolio-images/TFTPriest.gif">Watch Clip</a>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTPriest.mp4" type="video/mp4">
+										</video>
+										<br/>
+
 										<p>
 											While most of the base Enemy code was already laid out, I took the opportunity to learn about how the enemies in our game
 											worked, which meant learning about Unity's NavMesh, NavMesh Agents, and various Physics functions.
@@ -121,7 +132,12 @@
 											which means that they can only be damaged by melee attacks. To get this working meant diving into the player
 											projectile code and adding a check in the OnCollisionEnter function. It also meant creating a new enemy state.
 										</p>
-										<a class="button" href="images/original-portfolio-images/TFTShielded.gif">Watch Clip</a>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTShielded.mp4" type="video/mp4">
+										</video>
+										<br/>
+
 										<p>
 											Tomb for Two is available for download on the Spartasoft Studio <a href="https://spartasoftstudio.itch.io/tomb-for-two">itch.io page</a>.
 										</p>
