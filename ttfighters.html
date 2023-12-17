@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Trick or Treat Fighters - Kyle Nowak</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				
+
+				<!-- Header -->
+					<header id="header">
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<!--<li><a href="generic.html">Generic Page</a></li>-->
+							<!--<li><a href="elements.html">Elements Reference</a></li>-->
+							<li class="active"><a href="tombfortwo.html">Tomb For Two</a></li>
+							<li><a href="robloxdev.html">Roblox Development</a></li>
+							<li><a href="sneakeasy.html">Sneakeasy</a></li>
+						</ul>
+						<!-- I should add a LinkedIn Icon up here
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						-->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">Fall 2022</span>
+									<h1>Tomb For<br />
+									Two</h1>
+									<p>
+										Tomb for Two is a local 2-player dungeon crawler where Anubis and Bastet have been trapped in a pyramid. 
+										Set in a far-off futuristic world, the two players must escape the pyramid by defeating enemies 
+										and solving puzzles together. 
+										<br/> 
+										<br/> 
+										On this project, I worked on certain enemy aspects, including an entire enemy type, 
+										as well as all of player movement.
+									</p>
+								</header>
+								<div class="image main"><img src="images/original-portfolio-images/TFT_main.jpg" alt="" /></div>
+								
+								<div class="row-content">
+									<div class="column-content">
+										<!--Movement-->
+										<h2>Movement</h2>
+										<p>
+											Tomb for Two features pretty standard player movement. You can move around with the WASD keys
+											or the left joystick. You can also dash by pressing space on keyboard, or A on controller. In addition,
+											I coded the player turning for mouse/keyboard. 
+										</p>
+										<p>
+											The movement is a basic Transform update on the player's model, and was some of the first code I ever wrote
+											in Unity C#. It utilizes Unity's new Input System to detect player input, as does the dash mechanic. The dash mechanic
+											works by first stripping the player of regular movement controls. It then applies an impulse to the player model in the direction
+											that they were moving using Unity's Rigidbody.AddForce() function.
+										</p>
+										
+										<video controls loop>
+											<source src="images/MP4s/TFTDash.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<p>
+											Both player movement and dashing get overriden when a player steps onto an ice puzzle, which I coded completely on my own.
+											It utilizes Unity's OnCollisionEnter events to detect when a player steps onto an ice puzzle, which sets the player into a
+											special state. In this state, the player is only allowed to move along the X and Z axes. When they move in a direction,
+											a velocity is placed onto the player model in that direction until they hit a wall. Hit detection is done through a Spherecast
+											just in front of the player along the axes on which they are moving. If the Spherecast detects a Collider with a specific Tag,
+											it lets the controller know that the player needs to be stopped, and can choose a new direction to move in.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTIcePuzzle.mp4" type="video/mp4">
+										</video>
+										<br/>
+										
+										<!--Enemies-->
+										<h2>Enemies</h2>
+										<p>
+											The enemies in Tomb For Two are credited largely to my teammate Nick Fraus, who did the majority of the work on them.
+											I did, however, have my contributions.
+										</p>
+										<p>
+											Certain subclasses of enemies have the ability to stun the player, leaving them unable to move or attack. They can, however,
+											free themselves by dashing. Based on this synergy, it made sense that I would work on creating the "stunned" player state, as well as coupling
+											it with the dash mechanic. Players are also granted invulnerability from any damage or stuns while dashing.
+										</p>
+										<p>
+											In addition to working with enemy stun, I also created a few enemy types of my own. One of these types is the Priest,
+											which is a passive and tanky enemy that wanders the pyramid, granting any fellow enemies in its radius invincibility.
+											To defeat enemies caught in the Priest's sandtrap, players must either lure enemies out of the priest's range, or defeat
+											the priest itself.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTPriest.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<p>
+											While most of the base Enemy code was already laid out, I took the opportunity to learn about how the enemies in our game
+											worked, which meant learning about Unity's NavMesh, NavMesh Agents, and various Physics functions.
+										</p>
+										<p>
+											Another aspect of Tomb for Two enemies I contributed to are the enemy shields. Any enemy can be shielded,
+											which means that they can only be damaged by melee attacks. To get this working meant diving into the player
+											projectile code and adding a check in the OnCollisionEnter function. It also meant creating a new enemy state.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TFTShielded.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<p>
+											Tomb for Two is available for download on the Spartasoft Studio <a href="https://spartasoftstudio.itch.io/tomb-for-two">itch.io page</a>.
+										</p>
+									</div>
+								</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">nowakky1@msu.edu</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/kyle-nowak-922ba6222/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<!--
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								-->
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
