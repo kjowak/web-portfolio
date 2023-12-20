@@ -58,7 +58,7 @@
 										Trick Or Treat Fighters is a 2-4 player local party game in which players kick, steal, and run
 										to be crowned the best trick-or-treater around! This game was submitted for one of MSU's Game
 										Development courses, and won awards for <b class="msugreen-text">"Most Fun," "Most Innovative,"</b> 
-										and runner-up for <b class="msugreen-text">"Best Aesthetic."</b>
+										and runner-up for <b class="msugreen-text">"Best Aesthetic"</b> from a panel of alumni judges.
 										<br/>
 										<br/> 
 										On this project, I worked on: the entirety of the menus; player movement, customization, and controls; 
@@ -70,23 +70,96 @@
 								<div class="row-content">
 									<div class="column-content">
 										<!--Player-->
-										<h2>Player</h2>
+										<h2>Movement and Combat</h2>
 										<p>
-											Tomb for Two features pretty standard player movement. You can move around with the WASD keys
-											or the left joystick. You can also dash by pressing space on keyboard, or A on controller. In addition,
-											I coded the player turning for mouse/keyboard. 
+											Trick or Treat Fighters (ToTF) features simple-yet-effective player movement: move your left joystick, and
+											the player will move in that direction. The only exception to this is the player rotation, which occurs at a more
+											gradual pace to add a feeling of smoothness. The simplicity of this movement allows the player to learn the game quickly 
+											and focus on the other aspects of the game, such as the combat. 
 										</p>
 										<p>
-											The movement is a basic Transform update on the player's model, and was some of the first code I ever wrote
-											in Unity C#. It utilizes Unity's new Input System to detect player input, as does the dash mechanic. The dash mechanic
-											works by first stripping the player of regular movement controls. It then applies an impulse to the player model in the direction
-											that they were moving using Unity's Rigidbody.AddForce() function.
+											ToTF's combat is once again a simple-yet-effective system that adds a great variety of scenarios and interactivity
+											into the game with only a single button. Players are able to "kick" one another in order to stop players from depositing candy
+											 - the kicked player will be forced to drop a percentage of their currently carried candy, knocked back in the direction of the kick,
+											and stunned for a few moments. Landing a kick is one of the most satisfying feelings in the game, especially if you manage
+											to knock someone into oncoming traffic!
 										</p>
-										
+
 										<video controls loop>
-											<source src="images/MP4s/TFTDash.mp4" type="video/mp4">
+											<source src="images/MP4s/TTFCombat.mp4" type="video/mp4">
 										</video>
 										<br/>
+
+										<p>
+											To better handle the functionality of the kick, I developed a state system for the player by using 
+											ScriptableObjects as enums, as outlined in 
+											<a href="https://www.youtube.com/watch?v=raQ3iHhE_Kk&list=WL&index=18&ab_channel=Unity">Ryan Hipple's talk</a>.
+											
+											The state machine holds a reference to the player's current state object and reads which booleans are set
+											to determine what actions the player can currently take.
+											This architecture allowed our team to easily create new states for the player, assigning the controls allowed
+											in that state by simply checking/unchecking boolean boxes in the inspector.
+										</p>
+
+										<h2>Multiplayer Support</h2>
+										<p>
+											ToTF features support for local multiplayer up to 4 players. While it was easy to
+											set this up in a single scene by using the Unity pre-built PlayerInputManager component, getting the game
+											to save player order and customization across scenes was a much more difficult task.
+										</p>
+										<p>
+											To overcome this challenge, I again utilized ScriptableObjects to maintain the customizations 
+											each player had selected, as well as a tie between those customizations and the device 
+											that they were created with. This allowed me to instantiate the properly-customized character when
+											the game started and pair that character with the appropriate controller.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TTFCustomization.mp4" type="video/mp4">
+										</video>
+										<br/>
+										
+										<!--Menus-->
+										<h2>Menus</h2>
+										<p>
+											I had the pleasure of implementing the entire menu system for ToTF. I utilized 
+											Unity's EventSystem with the New Input System to handle the navigation of the menus,
+											and Cinemachine to handle the camera panning I added to juice up the menus.
+										</p>
+										<p>
+											In addition to my usage of pre-made packages, I implemented a custom solution to
+											handle saving the options that the player selected. Once again, I turned to my
+											long-time friend ScriptableObjects to accomplish this. Any setting that is set/changed
+											updates a corresponding value held by a ScriptableObject, a pattern again taken from
+											Ryan Hipple. That value is then read by code in the scene where the gameplay occurs, which
+											then updates the appropriate values accordingly. As with the aforementioned ScriptableObject-based
+											systems, I found that designing the options system in this way allowed my team and I to write clean,
+											modular, and easily-maintainable code.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TTFOptions.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<!--Link-->
+										<h2>Game Link</h2>
+
+										<!--
+										<video controls loop>
+											<source src="images/MP4s/TTFCollectingAndDepositing.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<video controls loop>
+											<source src="images/MP4s/TTFCrash.mp4" type="video/mp4">
+										</video>
+										<br/>
+										-->
+
+										<p>
+											Trick or Treat Fighters is available for download on itch.io <a href="https://hariso.itch.io/trick-or-treat-fighters-x3d">here</a>!
+										</p>
 									</div>
 								</div>
 					</div>

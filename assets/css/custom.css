@@ -54,6 +54,8 @@ video {
     border-color: black;
     border-width: 5px;
     border-style: solid;
+    width: 520px;
+    height: 520px;
 }
 
 img.sneak-easy-logo {
