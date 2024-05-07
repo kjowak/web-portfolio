@@ -43,6 +43,13 @@
     flex-direction: row;
 }
 
+
+.main.video {
+    aspect-ratio: auto;
+    border: 5px black solid; 
+    /* background-color: black; */
+}
+
 /* Logos */
 img {
     border-color: black;
@@ -54,8 +61,9 @@ video {
     border-color: black;
     border-width: 5px;
     border-style: solid;
-    width: 520px;
-    height: 520px;
+    width: 75%;
+    aspect-ratio: 1;
+    background-color: black;
 }
 
 img.sneak-easy-logo {
