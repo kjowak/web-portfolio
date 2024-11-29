@@ -1,4 +1,30 @@
 
+/* #main {
+    width: 75%;
+}
+
+#nav {
+    width: 75%;
+} */
+
+#wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* @media screen and (max-width: 520px) {
+
+    #wrapper {
+        width: 100%;
+    }
+
+} */
+
+/* Topper */
+
+/* #topper {
+
+} */
 
 
 .column-content {
