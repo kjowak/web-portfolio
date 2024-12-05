@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Backyard Brawl - Kyle Nowak</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				
+
+				<!-- Header -->
+					<header id="header">
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<!--<li><a href="generic.html">Generic Page</a></li>-->
+							<!--<li><a href="elements.html">Elements Reference</a></li>-->
+							<li class="active"><a href="backyardbrawl.html">Backyard Brawl</a></li>
+							<li><a href="tombfortwo.html">Tomb For Two</a></li>
+							<li><a href="robloxdev.html">Roblox Development</a></li>
+							<li><a href="sneakeasy.html">Sneakeasy</a></li>
+							
+						</ul>
+						<!-- I should add a LinkedIn Icon up here
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						-->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">Fall 2023 - Present</span>
+									<h1>Backyard Brawl</h1>
+									<p>
+										Backyard Brawl is a <b class="msugreen-text">chaotic competitive party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
+										Players are pitted against one another in several gamemodes, ranging from <b class="msugreen-text">competitive trick or treating</b> to <b class="msugreen-text">laser tag soccer</b>. 
+										Playing as one of several <b class="msugreen-text">cute and memorable characters</b>, players must utilize power ups and 
+										strategy to come out on top of the competition.
+										<br/>
+										<br/>
+										On this project, I served as one of two programmers. <b>I spearheaded the game’s networking</b> and taught my 
+										co-programmer the basics of networking a video game. I also contributed heavily to the <b>power ups</b>, 
+										<b>local multiplayer capabilities</b>, <b>player data management</b>, gamemode prototypes, <b>soccer mechanics</b> (dribbling, scoring), 
+										<b>trick or treat mechanics</b> (scoring, player spawning, collecting and depositing), in-lobby controls, player animations, camera VFX, and lighting.
+									</p>										
+								</header>								
+								<video class="image main video" controls>
+									<source src="images/MP4s/ToTFTrailerTake6.mp4" type="video/mp4">
+								</video>
+								
+								<div class="row-content">
+									<div class="column-content">
+										<!--  -->
+										<h2>Networking</h2>
+										<p>
+											Backyard Brawl is a continuiation of a project started in the Fall of 2023. In its initial state,
+											the game was strictly a local multiplayer experience. However, as my team and I wanted to create
+											a commercially-viable product, we believed it necessary to push ourselves to network the game.
+										</p>
+										<p>
+											Over the summer, my co-programmer and I researched and practiced with Unity's networking solution,
+											<a href="https://docs-multiplayer.unity3d.com/netcode/current/about/">Netcode for Game Objects</a>.
+											We began taking some of the most basic features of the original game and implementing them in a networked state.
+											This allowed us to hit the ground running with our full team once the semester began, and gave us enough
+											background knowledge to not waste valuable semester time learning an entirely new system.
+										</p>
+
+										<h2>Local Multiplayer</h2>
+										<p>
+											Once the game was networked, we realized that it took quite a bit of time to rapidly ideate and
+											prototype ideas
+										</p>
+										<p>
+											To overcome this challenge, I again utilized ScriptableObjects to maintain the customizations 
+											each player had selected, as well as a tie between those customizations and the device 
+											that they were created with. This allowed me to instantiate the properly-customized character when
+											the game started and pair that character with the appropriate controller.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TTFCustomization.mp4" type="video/mp4">
+										</video>
+										<br/>
+										
+										<!--Menus-->
+										<h2>Menus</h2>
+										<p>
+											I had the pleasure of implementing the entire menu system for ToTF. I utilized 
+											Unity's EventSystem with the New Input System to handle the navigation of the menus,
+											and Cinemachine to handle the camera panning I added to juice up the menus.
+										</p>
+										<p>
+											In addition to my usage of pre-made packages, I implemented a custom solution to
+											handle saving the options that the player selected. Once again, I turned to my
+											long-time friend ScriptableObjects to accomplish this. Any setting that is set/changed
+											updates a corresponding value held by a ScriptableObject, a pattern again taken from
+											Ryan Hipple. That value is then read by code in the scene where the gameplay occurs, which
+											then updates the appropriate values accordingly. As with the aforementioned ScriptableObject-based
+											systems, I found that designing the options system in this way allowed my team and I to write clean,
+											modular, and easily-maintainable code.
+										</p>
+
+										<video controls loop>
+											<source src="images/MP4s/TTFOptions.mp4" type="video/mp4">
+										</video>
+										<br/>
+
+										<!--Link-->
+										<h2>Game Link</h2>
+										<p>
+											Trick or Treat Fighters is available for download on itch.io <a href="https://hariso.itch.io/trick-or-treat-fighters-x3d">here</a>!
+										</p>
+									</div>
+								</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">nowakky1@msu.edu</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/kyle-nowak-922ba6222/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<!--
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								-->
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
