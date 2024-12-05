@@ -50,7 +50,7 @@
     /* flex-wrap: wrap; */
     flex-direction: column;
     border: 0.1rem solid;
-    width: 90%;
+    width: 100%;
     padding: 5%;
 }
 
