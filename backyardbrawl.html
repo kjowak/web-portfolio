@@ -11,6 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/custom.css" />
+		<link rel="stylesheet" href="assets/css/prism.css"/>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -47,13 +48,13 @@
 					</nav>
 
 				<!-- Main -->
-					<div id="main">
+					<div id="main">						
 
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
 									<span class="date">Fall 2023 - Present</span>
-									<h1>Backyard Brawl</h1>
+									<h1>Backyard Brawl</h1>									
 									<p>
 										Backyard Brawl is a <b class="msugreen-text">chaotic competitive party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
 										Players are pitted against one another in several gamemodes, ranging from <b class="msugreen-text">competitive trick or treating</b> to <b class="msugreen-text">laser tag soccer</b>. 
@@ -74,6 +75,51 @@
 								<div class="row-content">
 									<div class="column-content">
 										<!--  -->
+										<pre>
+											<code class="language-csharp">
+void Start()
+{
+	orange = Topbar.color; //since Color.orange doesnt exist
+	purple = GameModeTitle.color;
+
+	//activeButtons = CandyMapSelectButtons;
+}
+
+void Update()
+{
+	if (Input.GetKeyDown(KeyCode.Q))
+	{
+		if(GameModeSelectCanvas.activeInHierarchy) GameModeSelectCanvas.SetActive(false);
+		else GameModeSelectCanvas.SetActive(true);
+	}
+}
+
+public void CandyMapSelect()
+{
+	GameModeTitle.text = "Candy Collectathon";
+	GameModeTitle.color = purple;
+	Topbar.color = orange;
+}
+
+public void LaserBallMapSelect()
+{
+	GameModeTitle.text = "LaserBall";
+	GameModeTitle.color = Color.red;
+	Topbar.color = Color.blue;
+}
+
+public void OpenMenu()
+{
+	EventSystem.current.SetSelectedGameObject(null);
+	EventSystem.current.SetSelectedGameObject(FirstButton);
+}
+public void CloseMenu()
+{
+	EventSystem.current.SetSelectedGameObject(null);
+	EventSystem.current.SetSelectedGameObject(ExitButton);
+}
+											</code>
+										</pre>
 										<h2>Networking</h2>
 										<p>
 											Backyard Brawl is a continuiation of a project started in the Fall of 2023. In its initial state,
@@ -173,6 +219,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
+			<script src="assets/js/prism.js"></script>
 	</body>
 </html>

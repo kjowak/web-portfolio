@@ -64,9 +64,9 @@
     }
 }
 
-.column-content > * {
+/* .column-content > * {
     flex: 1;
-}
+} */
 
 #main .column-content p {
     text-align: left;
