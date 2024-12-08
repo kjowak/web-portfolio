@@ -152,7 +152,7 @@ public void CloseMenu()
 											to the Internet.
 										</p>
 										<p>
-											I also leveraged a player data manager that unified how player data was maintained and 
+											I also created a player data manager that unified how player data was maintained and 
 											read for both local and online play. This abstracted away much of the networking-and 
 											local-specific code from almost every system in the game, saving my team and I the trouble 
 											of having to completely re-write each system to support local multiplayer.
@@ -174,7 +174,7 @@ public void CloseMenu()
 										<h2>Online Fairness</h2>
 										<p>
 											Backyard Brawl takes a host-based networking approach, 
-											meaning that one player starts (hosts) a lobby, and all 
+											meaning that one player starts a lobby (the host), and all 
 											players who want to join that lobby connect to the host. 
 											This is a very common approach, but caused a lot of unfair situations in our game.
 										</p>
@@ -182,11 +182,19 @@ public void CloseMenu()
 											Our initial approach to networking had many things being done on the 
 											server (host) side, with the idea that everything would be more secure 
 											to prevent hackers from being able to exploit the game. This led to the 
-											game feeling very unfair for anyone who wasn’t the host, so we modified 
-											how we handled certain functionality to allow clients to have more authority 
-											(at the cost of security). Our focus at the time 
-											was more on game functionality than game security, so we were willing to 
+											game feeling very unfair for anyone who wasn’t the host, with clients seeing 
+											themselves get kicked by far away players, missing candy they 
+											clearly ran through, and failing to kick players they were standing right next to. 
+											To alleviate some of these problems, we modified 
+											how we handled certain functionality to give clients more authority (at the cost of security).
+											Our focus at the time was more on game functionality than game security, so we were willing to 
 											make the sacrifice to improve playability.
+										</p>
+										<p>
+											The results of the change were very positive, with clients
+											being able to land hits much more reliably and candy collection feeling snappier than ever.
+											While simply giving clients more authority isn't the perfect solution,
+											it fit our project's needs at the time.
 										</p>
 										<p>
 											<span class="outcome-text">Outcomes:</span>

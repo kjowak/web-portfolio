@@ -2664,7 +2664,7 @@ input, select, textarea {
 		}
 
 	a.image {
-		overflow: hidden;
+		overflow: none;
 	}
 
 		a.image img {

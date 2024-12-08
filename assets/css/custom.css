@@ -126,6 +126,8 @@ video {
     background-color: black;
 }
 
+
+
 img.sneak-easy-logo {
     background-color: maroon;
 }
@@ -141,4 +143,11 @@ img.roblox-dev-logo {
 
 .msugreen-text {
     color: #0B9A6D;
+}
+
+/* Posts */
+
+.posts li {
+    width: 60%;
+    margin: 0 auto;
 }
