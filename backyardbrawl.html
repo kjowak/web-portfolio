@@ -54,28 +54,30 @@
 							<section class="post">
 								<header class="major">
 									<span class="date">Fall 2023 - Present</span>
-									<h1>Backyard Brawl</h1>									
+									<h1>Backyard Brawl</h1>
+									
+									<!-- <br/>							 -->
 									<p>
-										Backyard Brawl is a <b class="msugreen-text">chaotic competitive party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
+										Backyard Brawl is a <b class="msugreen-text">competitive and chaotic party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
 										Players are pitted against one another in several gamemodes, ranging from <b class="msugreen-text">competitive trick or treating</b> to <b class="msugreen-text">laser tag soccer</b>. 
 										Playing as one of several <b class="msugreen-text">cute and memorable characters</b>, players must utilize power ups and 
 										strategy to come out on top of the competition.
-										<br/>
-										<br/>
-										On this project, I served as one of two programmers. <b>I spearheaded the game’s networking</b> and taught my 
-										co-programmer the basics of networking a video game. I also contributed heavily to the <b>power ups</b>, 
+									</p>
+									<video class="image main video" controls>
+										<source src="images/MP4s/ToTFTrailerTake6.mp4" type="video/mp4">
+									</video>
+									<p>
+										On this 14-week project, I served as one of two programmers in addition to being the project's producer. <b>I spearheaded the game’s networking</b> and taught my 
+										co-programmer the basics of networking a video game. I also contributed heavily to the game's <b>power ups</b>, 
 										<b>local multiplayer capabilities</b>, <b>player data management</b>, gamemode prototypes, <b>soccer mechanics</b> (dribbling, scoring), 
 										<b>trick or treat mechanics</b> (scoring, player spawning, collecting and depositing), in-lobby controls, player animations, camera VFX, and lighting.
 									</p>										
 								</header>								
-								<video class="image main video" controls>
-									<source src="images/MP4s/ToTFTrailerTake6.mp4" type="video/mp4">
-								</video>
 								
 								<div class="row-content">
 									<div class="column-content">
 										<!--  -->
-										<pre>
+										<!-- <pre>
 											<code class="language-csharp">
 void Start()
 {
@@ -119,12 +121,13 @@ public void CloseMenu()
 	EventSystem.current.SetSelectedGameObject(ExitButton);
 }
 											</code>
-										</pre>
+										</pre> -->
 										<h2>Networking</h2>
 										<p>
-											Backyard Brawl is a continuiation of a project started in the Fall of 2023. In its initial state,
-											the game was strictly a local multiplayer experience. However, as my team and I wanted to create
-											a commercially-viable product, we believed it necessary to push ourselves to network the game.
+											Backyard Brawl is a continuation of a project started in the Fall of 2023. 
+											In its initial state, the game was strictly a local multiplayer experience. 
+											However, as my team and I wanted to create a commercially viable product, we 
+											believed it necessary to push ourselves to network the game.
 										</p>
 										<p>
 											Over the summer, my co-programmer and I researched and practiced with Unity's networking solution,
@@ -136,48 +139,95 @@ public void CloseMenu()
 
 										<h2>Local Multiplayer</h2>
 										<p>
-											Once the game was networked, we realized that it took quite a bit of time to rapidly ideate and
-											prototype ideas
+											After networking the game, our team realized that it was now difficult 
+											to rapidly prototype new mechanics and gamemodes due to the added complexity of networking systems. 
+											To alleviate this issue, I worked to reintroduce 
+											local multiplayer into the game.
 										</p>
 										<p>
-											To overcome this challenge, I again utilized ScriptableObjects to maintain the customizations 
-											each player had selected, as well as a tie between those customizations and the device 
-											that they were created with. This allowed me to instantiate the properly-customized character when
-											the game started and pair that character with the appropriate controller.
+											I wanted to reuse as much of the networking code as possible to avoid re-coding 
+											the entire game to support local. To sort of “fake it,” I started the local device 
+											as a host with no open ports, so that all code relying on Networking-only functionality 
+											(such as RPCs and object spawning) could still run without actually exposing the device 
+											to the Internet.
 										</p>
+										<p>
+											I also leveraged a player data manager that unified how player data was maintained and 
+											read for both local and online play. This abstracted away much of the networking-and 
+											local-specific code from almost every system in the game, saving my team and I the trouble 
+											of having to completely re-write each system to support local multiplayer.
+										</p>
+										<p>
+											<span class="outcome-text">Outcomes:</span>
+										</p>
+										<ul>
+											<li>New Mechanics and Gamemodes could be more easily tested and iterated upon</li>
+											<li>Player data manager saved team from having to recode systems to account for local multiplayer</li>
+										</ul>
 
-										<video controls loop>
+										<!-- <video controls loop>
 											<source src="images/MP4s/TTFCustomization.mp4" type="video/mp4">
-										</video>
-										<br/>
+										</video> -->
+										<!-- <br/> -->
 										
 										<!--Menus-->
-										<h2>Menus</h2>
+										<h2>Online Fairness</h2>
 										<p>
-											I had the pleasure of implementing the entire menu system for ToTF. I utilized 
-											Unity's EventSystem with the New Input System to handle the navigation of the menus,
-											and Cinemachine to handle the camera panning I added to juice up the menus.
+											Backyard Brawl takes a host-based networking approach, 
+											meaning that one player starts (hosts) a lobby, and all 
+											players who want to join that lobby connect to the host. 
+											This is a very common approach, but caused a lot of unfair situations in our game.
 										</p>
 										<p>
-											In addition to my usage of pre-made packages, I implemented a custom solution to
-											handle saving the options that the player selected. Once again, I turned to my
-											long-time friend ScriptableObjects to accomplish this. Any setting that is set/changed
-											updates a corresponding value held by a ScriptableObject, a pattern again taken from
-											Ryan Hipple. That value is then read by code in the scene where the gameplay occurs, which
-											then updates the appropriate values accordingly. As with the aforementioned ScriptableObject-based
-											systems, I found that designing the options system in this way allowed my team and I to write clean,
-											modular, and easily-maintainable code.
+											Our initial approach to networking had many things being done on the 
+											server (host) side, with the idea that everything would be more secure 
+											to prevent hackers from being able to exploit the game. This led to the 
+											game feeling very unfair for anyone who wasn’t the host, so we modified 
+											how we handled certain functionality to allow clients to have more authority 
+											(at the cost of security). Our focus at the time 
+											was more on game functionality than game security, so we were willing to 
+											make the sacrifice to improve playability.
 										</p>
+										<p>
+											<span class="outcome-text">Outcomes:</span>
+										</p>
+										<ul>
+											<li>Our "favor the attacker" approach made combat feel much more fair for all players</li>
+											<li>Picking up collectibles felt much more satisfying</li>
+										</ul>
 
-										<video controls loop>
+										<!-- <video controls loop>
 											<source src="images/MP4s/TTFOptions.mp4" type="video/mp4">
 										</video>
-										<br/>
+										<br/> -->
+										<h2>Going Forward</h2>
+										<p>
+											In the future, we would like to implement more security features into 
+											our game to prevent hackers from being able to do pretty much whatever 
+											they want. After doing some research on it, we believe that the networking approach used
+											in games like Overwatch and Rocket League would fit our game well. 
+											Implementing a networking architecture like that would be a completely new
+											realm for my team and I, but we know it would take our game to the next level.
+										</p>
+
+										<h2>Key Takeaways</h2>
+										<ul>
+											<li>
+												Finding the balance between playability and network 
+												security is very important, and a tricky one to find 
+												(but very exciting once you do!)
+											</li>
+											<li>
+												Centralizing commonly used data is very useful, especially 
+												when that data could come from different places.
+											</li>
+										</ul>
 
 										<!--Link-->
 										<h2>Game Link</h2>
 										<p>
-											Trick or Treat Fighters is available for download on itch.io <a href="https://hariso.itch.io/trick-or-treat-fighters-x3d">here</a>!
+											Backyard Brawl (formerly Trick or Treat Fighters) 
+											is available for download on itch.io <a href="https://hariso.itch.io/trick-or-treat-fighters-x3d">here</a>!
 										</p>
 									</div>
 								</div>
