@@ -255,4 +255,34 @@
 
 		}
 
+		var $codeToggleButtons = $(".code-toggle")
+
+		function setButtonText($button, $codePre) {
+			console.log("Setting button text")
+			if ($codePre.is(":hidden")) {
+				console.log("Code is invisible!")
+				$button.html("Show Code")
+			}
+			else {
+				$button.html("Hide Code")
+			}
+		}
+
+		$codeToggleButtons.each(function(index, domElement) {
+			// alert("Got a button!")
+			var $button = $(domElement)
+			var codeRef = $button.attr("data-coderef")
+			var $codePre = $(`#${codeRef}`)
+
+			if ($codePre.length) {
+				setButtonText($button, $codePre)
+				$button.click(function(eventObject) {
+					$codePre.toggle("slow", function() {
+						setButtonText($button, $codePre)
+					})
+				})
+			}			
+		})
+
+
 })(jQuery);

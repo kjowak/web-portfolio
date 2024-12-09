@@ -57,8 +57,8 @@
 									<p>
 										Backyard Brawl is a <b class="msugreen-text">competitive and chaotic party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
 										Players are pitted against one another in several gamemodes, ranging from <b class="msugreen-text">competitive trick or treating</b> to <b class="msugreen-text">laser tag soccer</b>. 
-										Playing as one of several <b class="msugreen-text">cute and memorable characters</b>, players must utilize power ups and 
-										strategy to come out on top of the competition.
+										Playing as one of <b class="msugreen-text">several cute characters</b>, players must utilize <b class="msugreen-text">power ups and 
+										strategy</b> to come out on top of the competition.
 									</p>
 									<video class="image main video" controls>
 										<source src="images/MP4s/ToTFTrailerTake6.mp4" type="video/mp4">
@@ -133,6 +133,7 @@ public void CloseMenu()
 											This allowed us to hit the ground running with our full team once the semester began, and gave us enough
 											background knowledge to not waste valuable semester time learning an entirely new system.
 										</p>
+										<!-- Insert video of online play? -->
 
 										<h2>Local Multiplayer</h2>
 										<p>
@@ -158,6 +159,87 @@ public void CloseMenu()
 											local-specific code from almost every system in the game, saving my team and I the trouble 
 											of having to completely re-write each system to support local multiplayer.
 										</p>
+
+										<button class="button primary code-toggle" data-coderef="playermetadata">
+											Show Code
+										</button>
+										<pre id="playermetadata">
+											<code class="language-csharp">/// &lt;summary>
+/// A struct used to store generally useful data
+/// about a player
+/// &lt;/summary>
+public struct PlayerMetaData : INetworkSerializable, IEquatable&lt;PlayerMetaData>
+{
+	// The index of this player
+	// Ranges from 1-4
+	public int PlayerIndex;
+
+	/// &lt;summary>
+	/// -1 if player is not on a team
+	/// &lt;/summary>
+	public int TeamIndex;
+
+	// The player's current chosen color
+	public Color PlayerColor;
+	
+	// The client's id.
+	// This will be 0 for all players in local lobbies
+	public ulong ClientId;
+
+	// The index of the player's
+	// current chosen model
+	public int ModelIndex;
+
+
+	/// &lt;summary>
+	/// The empty PlayerMetaData struct. Use the same as a null value
+	/// &lt;/summary>
+	public static PlayerMetaData Empty = new PlayerMetaData(0, -1, -1, Color.HSVToRGB(0, 0, 0), -1);
+
+
+	public PlayerMetaData(ulong clientId, int playerIndex, int teamIndex, Color playerColor, int modelIndex)
+	{
+		PlayerIndex = playerIndex;
+		TeamIndex = teamIndex;
+		PlayerColor = playerColor;
+		ClientId = clientId;
+		ModelIndex = modelIndex;
+	}
+
+	// Required by NetworkList that PlayerMetaData
+	// implements IEquatable
+	public bool Equals(PlayerMetaData other)
+	{
+		return PlayerIndex == other.PlayerIndex && 
+			TeamIndex == other.TeamIndex && 
+			PlayerColor == other.PlayerColor &&
+			ClientId == other.ClientId && 
+			ModelIndex == other.ModelIndex;
+	}
+
+	// This serializes the struct so it can be replicated
+	// across the network to all players
+	public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
+	{
+		serializer.SerializeValue(ref PlayerIndex);
+		serializer.SerializeValue(ref TeamIndex);
+		serializer.SerializeValue(ref PlayerColor);
+		serializer.SerializeValue(ref ClientId);
+		serializer.SerializeValue(ref ModelIndex);
+	}
+
+	public bool IsEmpty()
+	{
+		return this.Equals(PlayerMetaData.Empty);
+	}
+
+	public override string ToString()
+	{
+		return $"Player Data for Client {ClientId}: Index {PlayerIndex}, TeamIndex {TeamIndex}, Color {PlayerColor}, Model Index {ModelIndex}";
+	}
+}											</code>
+										</pre>
+										
 										<p>
 											<span class="outcome-text">Outcomes:</span>
 										</p>

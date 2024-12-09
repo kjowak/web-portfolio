@@ -159,3 +159,7 @@ img.roblox-dev-logo {
 .column-content label {
     margin: 0 0 2rem 0;
 }
+
+.column-content pre {
+    align-self: flex-start;
+}
