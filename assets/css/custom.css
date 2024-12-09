@@ -12,6 +12,22 @@
     margin: 0 auto;
 }
 
+#main, #nav, #footer {
+    max-width: 1000px;
+}
+/* 
+#nav {
+    max-width: 1000px;
+} */
+
+/* @media screen and (max-width: 460px) {
+
+    #main {
+        width: 100%;
+    }
+
+} */
+
 /* @media screen and (max-width: 520px) {
 
     #wrapper {
@@ -34,13 +50,23 @@
     /* flex-wrap: wrap; */
     flex-direction: column;
     border: 0.1rem solid;
-    width: 90%;
+    width: 100%;
     padding: 5%;
 }
 
-.column-content > * {
-    flex: 1;
+@media screen and (max-width: 480px) {
+    .column-content {
+        width: 100%;
+    }
+
+    #main > .post {
+        padding: 4rem 1rem 2rem 1rem;
+    }
 }
+
+/* .column-content > * {
+    flex: 1;
+} */
 
 #main .column-content p {
     text-align: left;
@@ -56,11 +82,19 @@
 
 
 .column-content > h1, 
-.column-content > h2 {
+.column-content > h2,
+.column-content > h3 {
     align-self: flex-start;
     margin-top: 2rem;
     font-weight: bolder;
     text-decoration: underline;
+}
+
+.outcome-text {
+    /* font-weight: 100; */
+    text-decoration: underline;
+    font-size: 1.4rem;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
 
 .row-content {
@@ -92,6 +126,8 @@ video {
     background-color: black;
 }
 
+
+
 img.sneak-easy-logo {
     background-color: maroon;
 }
@@ -107,4 +143,19 @@ img.roblox-dev-logo {
 
 .msugreen-text {
     color: #0B9A6D;
+}
+
+/* Posts */
+
+.posts li {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.column-content img {
+    max-width: 100%;
+}
+
+.column-content label {
+    margin: 0 0 2rem 0;
 }

@@ -2664,7 +2664,7 @@ input, select, textarea {
 		}
 
 	a.image {
-		overflow: hidden;
+		overflow: none;
 	}
 
 		a.image img {
@@ -2932,7 +2932,7 @@ input, select, textarea {
 			font-style: italic;
 		}
 
-		header > h1 + p {
+		header > h1 ~ p {
 			font-size: 1.1rem;
 			margin-top: -0.5rem;
 			line-height: 2;
@@ -3720,7 +3720,7 @@ input, select, textarea {
 					-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 					transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 					display: block;
-					font-size: 0.7rem;
+					font-size: 0.8rem;
 					outline: none;
 					padding: 0 2rem;
 				}
@@ -3788,7 +3788,7 @@ input, select, textarea {
 		}
 
 		#main > .post {
-			padding: 8rem 8rem 6rem 8rem ;
+			padding: 6rem 8rem 6rem 8rem ;
 		}
 
 			#main > .post header.major > .date {

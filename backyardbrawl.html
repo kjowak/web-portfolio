@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Backyard Brawl - Kyle Nowak</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<link rel="stylesheet" href="assets/css/prism.css"/>
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				
+
+				<!-- Header -->
+					<header id="header">
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li class="active"><a href="backyardbrawl.html">Backyard Brawl</a></li>
+							<li><a href="tombfortwo.html">Tomb For Two</a></li>
+							<li><a href="robloxdev.html">Roblox Development</a></li>
+							<li><a href="sneakeasy.html">Sneakeasy</a></li>							
+						</ul>
+						<!-- I should add a LinkedIn Icon up here
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						-->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">						
+
+						<!-- Post -->
+							<section class="post">
+								<header class="major">
+									<span class="date">Fall 2023 - Present</span>
+									<h1>Backyard Brawl</h1>
+									
+									<!-- <br/>							 -->
+									<p>
+										Backyard Brawl is a <b class="msugreen-text">competitive and chaotic party game</b> for <b class="msugreen-text">2-4 players</b> both <b class="msugreen-text">locally and online</b>.
+										Players are pitted against one another in several gamemodes, ranging from <b class="msugreen-text">competitive trick or treating</b> to <b class="msugreen-text">laser tag soccer</b>. 
+										Playing as one of several <b class="msugreen-text">cute and memorable characters</b>, players must utilize power ups and 
+										strategy to come out on top of the competition.
+									</p>
+									<video class="image main video" controls>
+										<source src="images/MP4s/ToTFTrailerTake6.mp4" type="video/mp4">
+									</video>
+									<p>
+										On this 14-week project, I served as one of two programmers in addition to being the project's producer. <b>I spearheaded the game’s networking</b> and taught my 
+										co-programmer the basics of networking a video game. I also contributed heavily to the game's <b>power ups</b>, 
+										<b>local multiplayer capabilities</b>, <b>player data management</b>, gamemode prototypes, <b>soccer mechanics</b> (dribbling, scoring), 
+										<b>trick or treat mechanics</b> (scoring, player spawning, collecting and depositing), in-lobby controls, player animations, camera VFX, and lighting.
+									</p>										
+								</header>								
+								
+								<div class="row-content">
+									<div class="column-content">
+										<!--  -->
+										<!-- <pre>
+											<code class="language-csharp">
+void Start()
+{
+	orange = Topbar.color; //since Color.orange doesnt exist
+	purple = GameModeTitle.color;
+
+	//activeButtons = CandyMapSelectButtons;
+}
+
+void Update()
+{
+	if (Input.GetKeyDown(KeyCode.Q))
+	{
+		if(GameModeSelectCanvas.activeInHierarchy) GameModeSelectCanvas.SetActive(false);
+		else GameModeSelectCanvas.SetActive(true);
+	}
+}
+
+public void CandyMapSelect()
+{
+	GameModeTitle.text = "Candy Collectathon";
+	GameModeTitle.color = purple;
+	Topbar.color = orange;
+}
+
+public void LaserBallMapSelect()
+{
+	GameModeTitle.text = "LaserBall";
+	GameModeTitle.color = Color.red;
+	Topbar.color = Color.blue;
+}
+
+public void OpenMenu()
+{
+	EventSystem.current.SetSelectedGameObject(null);
+	EventSystem.current.SetSelectedGameObject(FirstButton);
+}
+public void CloseMenu()
+{
+	EventSystem.current.SetSelectedGameObject(null);
+	EventSystem.current.SetSelectedGameObject(ExitButton);
+}
+											</code>
+										</pre> -->
+										<h2>Networking</h2>
+										<p>
+											Backyard Brawl is a continuation of a project started in the Fall of 2023. 
+											In its initial state, the game was strictly a local multiplayer experience. 
+											However, as my team and I wanted to create a commercially viable product, we 
+											believed it necessary to push ourselves to network the game.
+										</p>
+										<p>
+											Over the summer, my co-programmer and I researched and practiced with Unity's networking solution,
+											<a href="https://docs-multiplayer.unity3d.com/netcode/current/about/">Netcode for Game Objects</a>.
+											We began taking some of the most basic features of the original game and implementing them in a networked state.
+											This allowed us to hit the ground running with our full team once the semester began, and gave us enough
+											background knowledge to not waste valuable semester time learning an entirely new system.
+										</p>
+
+										<h2>Local Multiplayer</h2>
+										<p>
+											After networking the game, our team realized that it was now difficult 
+											to rapidly prototype new mechanics and gamemodes due to the added complexity of networking systems. 
+											To alleviate this issue, I worked to reintroduce 
+											local multiplayer into the game.
+										</p>
+										<label>
+											<img src="images/BackyardBrawl/LocalLobby.png"/>
+											An image of the Local Multiplayer Lobby
+										</label>
+										<p>
+											I wanted to reuse as much of the networking code as possible to avoid re-coding 
+											the entire game to support local. To sort of “fake it,” I started the local device 
+											as a host with no open ports, so that all code relying on Networking-only functionality 
+											(such as RPCs and object spawning) could still run without actually exposing the device 
+											to the Internet.
+										</p>
+										<p>
+											I also created a player data manager that unified how player data was maintained and 
+											read for both local and online play. This abstracted away much of the networking-and 
+											local-specific code from almost every system in the game, saving my team and I the trouble 
+											of having to completely re-write each system to support local multiplayer.
+										</p>
+										<p>
+											<span class="outcome-text">Outcomes:</span>
+										</p>
+										<ul>
+											<li>New Mechanics and Gamemodes could be more easily tested and iterated upon</li>
+											<li>Player data manager saved team from having to recode systems to account for local multiplayer</li>
+										</ul>
+
+										<!-- <video controls loop>
+											<source src="images/MP4s/TTFCustomization.mp4" type="video/mp4">
+										</video> -->
+										<!-- <br/> -->
+										
+										<!--Menus-->
+										<h2>Online Fairness</h2>
+										<p>
+											Backyard Brawl takes a host-based networking approach, 
+											meaning that one player starts a lobby (the host), and all 
+											players who want to join that lobby connect to the host. 
+											This is a very common approach, but caused a lot of unfair situations in our game.
+										</p>
+										<p>
+											Our initial approach to networking had many things being done on the 
+											server (host) side, with the idea that everything would be more secure 
+											to prevent hackers from being able to exploit the game. This led to the 
+											game feeling very unfair for anyone who wasn’t the host, with clients seeing 
+											themselves get kicked by far away players, missing candy they 
+											clearly ran through, and failing to kick players they were standing right next to. 
+											To alleviate some of these problems, we modified 
+											how we handled certain functionality to give clients more authority (at the cost of security).
+											Our focus at the time was more on game functionality than game security, so we were willing to 
+											make the sacrifice to improve playability.
+										</p>
+										<p>
+											The results of the change were very positive, with clients
+											being able to land hits much more reliably and candy collection feeling snappier than ever.
+											While simply giving clients more authority isn't the perfect solution,
+											it fit our project's needs at the time.
+										</p>
+										<p>
+											<span class="outcome-text">Outcomes:</span>
+										</p>
+										<ul>
+											<li>Our "favor the attacker" approach made combat feel much more fair for all players</li>
+											<li>Picking up collectibles felt much more satisfying</li>
+										</ul>
+
+										<!-- <video controls loop>
+											<source src="images/MP4s/TTFOptions.mp4" type="video/mp4">
+										</video>
+										<br/> -->
+										<h2>Going Forward</h2>
+										<p>
+											In the future, we would like to implement more security features into 
+											our game to prevent hackers from being able to do pretty much whatever 
+											they want. After doing some research on it, we believe that the networking approach used
+											in games like Overwatch and Rocket League would fit our game well. 
+											Implementing a networking architecture like that would be a completely new
+											realm for my team and I, but we know it would take our game to the next level.
+										</p>
+
+										<h2>Key Takeaways</h2>
+										<ul>
+											<li>
+												Finding the balance between playability and network 
+												security is very important, and a tricky one to find 
+												(but very exciting once you do!)
+											</li>
+											<li>
+												Centralizing commonly used data is very useful, especially 
+												when that data could come from different places.
+											</li>
+										</ul>
+
+										<!--Link-->
+										<h2>Game Link</h2>
+										<p>
+											Backyard Brawl (formerly Trick or Treat Fighters) 
+											is available for download on itch.io <a href="https://hariso.itch.io/trick-or-treat-fighters-x3d">here</a>!
+										</p>
+									</div>
+								</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<section class="split contact">
+						<section>
+							<h3>Email</h3>
+							<p><a href="#">nowakky1@msu.edu</a></p>
+						</section>
+						<section>
+							<h3>Social</h3>
+							<ul class="icons alt">
+								<li><a href="https://www.linkedin.com/in/kyle-nowak-922ba6222/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
+								<!--
+								<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								-->
+							</ul>
+						</section>
+					</section>
+				</footer>
+
+			<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/prism.js"></script>
+	</body>
+</html>
