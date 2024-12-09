@@ -275,6 +275,7 @@
 			var $codePre = $(`#${codeRef}`)
 
 			if ($codePre.length) {
+				$codePre.hide()
 				setButtonText($button, $codePre)
 				$button.click(function(eventObject) {
 					$codePre.toggle("slow", function() {

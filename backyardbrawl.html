@@ -164,6 +164,164 @@ public void CloseMenu()
 											Show Code
 										</button>
 										<pre id="playermetadata">
+											<code class="language-csharp">public class ClientPlayerManager : NetworkBehaviour
+{
+    public static ClientPlayerManager Singleton = null;
+
+    public NetworkList&lt;ulong> clientIdJoinOrder;
+    public NetworkVariable&lt;int> numClients;
+
+    public NetworkList&lt;PlayerMetaData> playerMetaData;
+
+    public List&lt;int> playerScores;
+
+    [Tooltip("This is solely used for getting player colors as of now.")]
+    [SerializeField] private PlayerSettingsSO playerSettings;
+    
+    [Tooltip("List of player models")]
+    [SerializeField] private GameObjectListSO playerModels;
+
+
+    private void Awake()
+    {
+
+        playerScores = new List&lt;int>();
+
+        if (Singleton != null)
+        {
+            Destroy(gameObject); // don't know if this is legal or not.
+            // I think it is because NetworkSpawn isn't called until after
+            // Start since this is an in-scene placed NetworkObject.
+            // But we will have to see
+            return;
+        }
+
+        Singleton = this;
+        DontDestroyOnLoad(gameObject);
+
+        clientIdJoinOrder = new NetworkList&lt;ulong>();
+        numClients = new NetworkVariable&lt;int>(value: 0);
+        playerMetaData = new NetworkList&lt;PlayerMetaData>();
+    }
+
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+
+        if (!IsServer) return;
+
+        if (LocalDeviceManager.LocalMultiplayerEnabled) return;
+
+        NetworkManager.OnConnectionEvent += NetworkManager_OnConnectionEvent;
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer)
+        {
+            if (!LocalDeviceManager.LocalMultiplayerEnabled)
+            {
+                NetworkManager.OnConnectionEvent -= NetworkManager_OnConnectionEvent;
+            }
+            playerMetaData.Dispose();
+        }
+        base.OnNetworkDespawn();
+    }
+
+    public void InitializeMap()
+    {
+        if (!IsServer) return;
+
+        Debug.Log("Initializing map!");
+        foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
+        {
+            AddClient(clientId);
+        }
+    }
+
+    public int GetClientIndex(ulong clientId)
+    {
+        for (int i = 0; i &lt; clientIdJoinOrder.Count; i++)
+        {
+            if (clientIdJoinOrder[i] == clientId)
+            {
+                return i + 1;
+            }
+        }
+
+        return -1; // wasn't found
+    }
+
+    public int GetPlayerCount()
+    {
+        return numClients.Value;
+    }
+
+    public PlayerMetaData GetMetaData(int playerIndex)
+    {
+        for (int i = 0; i &lt; playerMetaData.Count; i++)
+        {
+            PlayerMetaData metaData = playerMetaData[i];
+            if (metaData.PlayerIndex == playerIndex)
+            {
+                return metaData;
+            }
+        }
+
+        return PlayerMetaData.Empty; // return an "empty" meta data
+    }
+
+    public PlayerMetaData GetMetaData(ulong clientId)
+    {
+        int playerIndex = GetClientIndex(clientId);
+        return GetMetaData(playerIndex);
+    }
+
+    public PlayerMetaData AddClient(ulong clientId)
+    {
+        if (!IsServer) return PlayerMetaData.Empty;
+        if (clientIdJoinOrder.Contains(clientId)) return GetMetaData(clientId); // should find and return the meta data for the requested client
+
+        numClients.Value += 1;
+        clientIdJoinOrder.Add(clientId);
+
+        PlayerMetaData metaData;
+        metaData.PlayerIndex = numClients.Value;
+        int colorIndex = SetPlayerColor(metaData.PlayerIndex-1);
+        metaData.PlayerColor = playerSettings.playerColors[colorIndex];
+        metaData.TeamIndex = -1;
+        metaData.ClientId = clientId;
+        metaData.ModelIndex = 0;
+
+        playerMetaData.Add(metaData);
+
+        return metaData;
+    }
+
+    public void RemoveClient(ulong clientId)
+    {
+        if (!IsServer) return;
+
+        numClients.Value -= 1;
+
+        PlayerMetaData metaData = GetMetaData(clientId); // need to remove meta data first since it relies on clientIdJoinOrder
+        playerMetaData.Remove(metaData);
+        clientIdJoinOrder.Remove(clientId);
+    }
+
+    private void NetworkManager_OnConnectionEvent(NetworkManager networkManager, ConnectionEventData connectionData)
+    {
+        switch (connectionData.EventType)
+        {
+            case ConnectionEvent.ClientConnected:
+                AddClient(connectionData.ClientId);
+                break;
+            case ConnectionEvent.ClientDisconnected:
+                RemoveClient(connectionData.ClientId);
+                break;
+        }
+    }
+}											</code>
 											<code class="language-csharp">/// &lt;summary>
 /// A struct used to store generally useful data
 /// about a player
@@ -237,7 +395,7 @@ public struct PlayerMetaData : INetworkSerializable, IEquatable&lt;PlayerMetaDat
 	{
 		return $"Player Data for Client {ClientId}: Index {PlayerIndex}, TeamIndex {TeamIndex}, Color {PlayerColor}, Model Index {ModelIndex}";
 	}
-}											</code>
+}											</code>											
 										</pre>
 										
 										<p>
