@@ -168,12 +168,16 @@ public void CloseMenu()
 {
     public static ClientPlayerManager Singleton = null;
 
+	// used to maintain order of clients/players joining,
+	// will be used in the future to handle host switching
     public NetworkList&lt;ulong> clientIdJoinOrder;
     public NetworkVariable&lt;int> numClients;
 
+	// this is the magic sauce,
+	// just about every system that needs
+	// to read player data relies on this list
+	// and the GetMetaData() function
     public NetworkList&lt;PlayerMetaData> playerMetaData;
-
-    public List&lt;int> playerScores;
 
     [Tooltip("This is solely used for getting player colors as of now.")]
     [SerializeField] private PlayerSettingsSO playerSettings;
@@ -184,9 +188,6 @@ public void CloseMenu()
 
     private void Awake()
     {
-
-        playerScores = new List&lt;int>();
-
         if (Singleton != null)
         {
             Destroy(gameObject); // don't know if this is legal or not.
@@ -210,6 +211,10 @@ public void CloseMenu()
 
         if (!IsServer) return;
 
+		// this prevents automatic adding of
+		// a random controller for the host during local play.
+		// Since the host technically is a client that connects to itself,
+		// the Conneciton Event will fire and run code that we don't want to run
         if (LocalDeviceManager.LocalMultiplayerEnabled) return;
 
         NetworkManager.OnConnectionEvent += NetworkManager_OnConnectionEvent;
@@ -223,20 +228,11 @@ public void CloseMenu()
             {
                 NetworkManager.OnConnectionEvent -= NetworkManager_OnConnectionEvent;
             }
-            playerMetaData.Dispose();
+			// NetworkLists have been tricky with memory leaks,
+			// hoping Dispose() solves some of them
+            playerMetaData.Dispose(); 
         }
         base.OnNetworkDespawn();
-    }
-
-    public void InitializeMap()
-    {
-        if (!IsServer) return;
-
-        Debug.Log("Initializing map!");
-        foreach (ulong clientId in NetworkManager.ConnectedClientsIds)
-        {
-            AddClient(clientId);
-        }
     }
 
     public int GetClientIndex(ulong clientId)
@@ -245,16 +241,11 @@ public void CloseMenu()
         {
             if (clientIdJoinOrder[i] == clientId)
             {
-                return i + 1;
+                return i + 1; // player index is 1-based, i is 0-based
             }
         }
 
         return -1; // wasn't found
-    }
-
-    public int GetPlayerCount()
-    {
-        return numClients.Value;
     }
 
     public PlayerMetaData GetMetaData(int playerIndex)
